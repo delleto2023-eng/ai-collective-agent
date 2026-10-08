@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  ai-agent:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./tasks:/app/tasks
+      - ./memory:/app/.memory
+    environment:
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - DEBUG=false
+    restart: unless-stopped
